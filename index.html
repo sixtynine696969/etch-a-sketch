@@ -12,6 +12,7 @@
             box-sizing: border-box;
         }
         #container {
+            box-sizing: content-box;
             display: flex;
             flex-wrap: wrap;
             border: 5px solid black;
@@ -51,7 +52,7 @@
         }
 
         function getNewRBGString(oldRGB) {
-            console.log(oldRGB);
+            // console.log(oldRGB);
             const numberArray = oldRGB.replace('rgb(', '').replace(')', '').split(', ');
             const red = +numberArray[0];
             const green = +numberArray[1];
