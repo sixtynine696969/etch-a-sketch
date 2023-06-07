@@ -6,12 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-Sketch</title>
     <style>
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #container {
+            box-sizing: content-box;
+            display: flex;
+            border: 5px solid black;
+            height: 500px;
+            width: 500px;
+            flex-wrap: wrap;
+            
+        }
+        #container div {
+            flex: 1;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
-    <script>
+    <div id="container">
 
+    </div>
+
+    <script>
+        const container = document.querySelector('#container');
+
+        gridSize = 32;
+
+        for (let i = 0; i < (gridSize * gridSize); i++) {
+            const div = document.createElement('div');
+            div.style.padding = `${container.clientHeight / (gridSize * 2)}px`;
+            container.appendChild(div);
+            }
     </script>
 </body>
 </html>
