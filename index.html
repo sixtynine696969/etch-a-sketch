@@ -14,11 +14,10 @@
         #container {
             box-sizing: content-box;
             display: flex;
+            flex-wrap: wrap;
             border: 5px solid black;
             height: 500px;
             width: 500px;
-            flex-wrap: wrap;
-            
         }
         #container div {
             flex: 1;
@@ -27,30 +26,58 @@
     </style>
 </head>
 <body>
+    <button class="select-btn">Change grid size</button>
     <div id="container"></div>
 
     <script>
-        const container = document.querySelector('#container');
-
-        gridSize = 16;
-
-        for (let i = 0; i < (gridSize * gridSize); i++) {
-            const div = document.createElement('div');
-            div.classList.add('grid-item');
-            div.style.padding = `${container.clientHeight / (gridSize * 2)}px`;
-            container.appendChild(div);
+        function populateGrid (gridSize, containerHeight) {
+            for (let i = 0; i < (gridSize * gridSize); i++) {
+                const div = document.createElement('div');
+                div.classList.add('grid-item');
+                div.style.padding = `${containerHeight / (gridSize * 2)}px`;
+                container.appendChild(div);
+            }
         }
 
-        const divs = document.querySelectorAll('div');
-        
-        divs.forEach(div => {
-            if (div.classList.value !== 'grid-item') return;
-
-            div.addEventListener('mouseover', e => {
-                e.target.style.backgroundColor = 'black';
+        function removeGridItems(gridContainer) {
+            const gridItems = document.querySelectorAll('.grid-item');
+            gridItems.forEach(gridItem => {
+                container.removeChild(gridItem);
             })
-        })
+        }
 
+        function addListeners() {
+            const divs = document.querySelectorAll('div');
+        
+            divs.forEach(div => {
+                if (div.classList.value !== 'grid-item') return;
+
+                div.addEventListener('mouseover', e => {
+                    e.target.style.backgroundColor = 'black';
+                })
+            })
+        }
+
+        const container = document.querySelector('#container');
+        const containerHeight = container.clientHeight;
+        
+        populateGrid(16, containerHeight);
+        addListeners();
+
+        const selectButton = document.querySelector('.select-btn')
+
+        selectButton.addEventListener('click', () => {
+
+            let userInput = +prompt("How many squeres per side do you want? (100 is max)", "16");
+            while (isNaN(userInput) || userInput > 100) {
+                if (isNaN(userInput)) userInput = +prompt("Enter a valid number", "16");
+                else if (userInput > 100) userInput = +prompt("Ayooo, chill out, 100 is the maximum!");
+            } 
+
+            removeGridItems(container);
+            populateGrid(userInput, containerHeight);
+            addListeners();
+        })
     </script>
 </body>
 </html>
