@@ -15,7 +15,7 @@
             box-sizing: content-box;
             display: flex;
             flex-wrap: wrap;
-            border: 5px solid black;
+            border: 1px solid black;
             height: 500px;
             width: 500px;
         }
@@ -46,6 +46,21 @@
             })
         }
 
+        function random() {
+            return Math.floor(Math.random() * 255) + 1;
+        }
+
+        function getNewRBGString(oldRGB) {
+            console.log(oldRGB);
+            const numberArray = oldRGB.replace('rgb(', '').replace(')', '').split(', ');
+            const red = +numberArray[0];
+            const green = +numberArray[1];
+            const blue = +numberArray[2];
+
+            // return `rgb(${red - (255 / 10)}, ${green - (255 / 10)}, ${blue - (255 / 10)})`;
+            return `rgb(${red - (red / 10)}, ${green - (green / 10)}, ${blue - (blue / 10)})`
+        }
+
         function addListeners() {
             const divs = document.querySelectorAll('div');
         
@@ -53,7 +68,13 @@
                 if (div.classList.value !== 'grid-item') return;
 
                 div.addEventListener('mouseover', e => {
-                    e.target.style.backgroundColor = 'black';
+                    let bgColor = e.target.style.backgroundColor;
+                    if (bgColor.startsWith('rgb')) {
+                        let newRGB = getNewRBGString(bgColor);
+                        e.target.style.backgroundColor = newRGB;
+                    } else {
+                        e.target.style.backgroundColor = `rgb(${random()}, ${random()}, ${random()})`;
+                    }
                 })
             })
         }
