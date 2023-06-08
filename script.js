@@ -59,14 +59,15 @@ const selectButton = document.querySelector('.select-btn')
 
 selectButton.addEventListener('click', () => {
 
-    let userInput = +prompt("How many squeres per side do you want? (100 is max)", "16");
+    let userInput = prompt("How many squeres per side do you want? (100 is max)", "16");
+    if (userInput === null) return;
+    
+    userInput = +userInput;
     while (isNaN(userInput) || userInput > 100) {
         if (isNaN(userInput)) userInput = +prompt("Enter a valid number", "16");
         else if (userInput > 100) userInput = +prompt("Ayooo, chill out, 100 is the maximum!");
     } 
-    if (userInput === 0) return;
     
-    console.log(userInput)
     removeGridItems(container);
     populateGrid(userInput, containerHeight);
     addListeners();
