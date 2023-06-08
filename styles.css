@@ -7,7 +7,7 @@
 body {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     margin: 0 auto;
     width: 500px;
@@ -16,13 +16,26 @@ body {
     gap: 25px;
 }
 
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 25px;
+    border-radius: 25px;
+    gap: 25px;
+    border: 1px solid gray;
+}
+
 #container {
     box-sizing: content-box;
     display: flex;
     flex-wrap: wrap;
-    border: 5px solid black;
+    border: 2px solid black;
     height: 500px;
     width: 500px;
+    border-radius: 3px;
 }
 
 /* .grid-item {
@@ -34,7 +47,7 @@ body {
     font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
-    margin-top: 100px;
     border-radius: 10px;
     background: linear-gradient(white, lightgray);
+    box-shadow: 1px 1px 3px;
 }
