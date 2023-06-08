@@ -64,7 +64,9 @@ selectButton.addEventListener('click', () => {
         if (isNaN(userInput)) userInput = +prompt("Enter a valid number", "16");
         else if (userInput > 100) userInput = +prompt("Ayooo, chill out, 100 is the maximum!");
     } 
-
+    if (userInput === 0) return;
+    
+    console.log(userInput)
     removeGridItems(container);
     populateGrid(userInput, containerHeight);
     addListeners();
