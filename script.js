@@ -32,11 +32,9 @@ function getNewRBGString(oldRGB) {
 }
 
 function addListeners() {
-    const divs = document.querySelectorAll('div');
+    const divs = document.querySelectorAll('.grid-item');
 
     divs.forEach(div => {
-        if (div.classList.value !== 'grid-item') return;
-
         div.addEventListener('mouseover', e => {
             let bgColor = e.target.style.backgroundColor;
             if (bgColor.startsWith('rgb')) {
